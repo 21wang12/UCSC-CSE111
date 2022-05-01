@@ -6,6 +6,22 @@ We change professor because the previous professor got ill.
 
 The remian asgn websit is: 
 
+# File structure
+
+```
+.
+.
+├── asgn1/              # ydc
+│   ├── code/
+│   └── test/
+├── asgn2/              # yshell
+│   ├── code/
+│   └── test/
+├── bin/
+├── README.md           
+└── resource/           # .pdf files: assignment description
+```
+
 # Usage:
 
 1. goto `asgn<n>/code` folder, edit `Makefile`, find and add `bin` folder to PATH variable
@@ -20,6 +36,8 @@ export PATH := ${PATH}:/path/to/bin
 4. goto `../test` folder
 
 5. run `mk.tests` command.
+
+6. enjoy it.
 
 # Helper
 
@@ -48,7 +66,7 @@ wget -nH --cut-dir=8 -e robots=off -r --no-parent -l1 -R "*.html*,*.gif" https:/
 Change `PATH` variable in makefile
 ```bash
 # export PATH := ${PATH}:/afs/cats.ucsc.edu/courses/cse110a-wm/bin
-export PATH := ${PATH}:/root/wksp-simon/cse111/bin
+export PATH := ${PATH}:/path/to/bin
 ```
 
 2. How to install gcc-11 which support `g++ -std=gnu++20`

@@ -105,12 +105,14 @@ void fn_cat (inode_state& state, const wordvec& words) {
    }
    inode_ptr target_inode = get_inode(state.get_root(), pathname);
    if(target_inode == nullptr){
-      throw command_error ("cat: "+pathname + ": "+"No such file or directory");
+      throw command_error ("cat: " + pathname + ": " \
+                           + "No such file or directory");
       exec::status(1);
       return;
    }
    if(target_inode->type() == file_type::DIRECTORY_TYPE){
-      throw command_error ("cat: " + pathname + ": "+"can not cat a dir");
+      throw command_error ("cat: " + pathname + ": " \
+                           + "can not cat a dir");
       exec::status(1);
       return;
    }
@@ -146,7 +148,8 @@ void fn_cd (inode_state& state, const wordvec& words) {
    inode_ptr parent_inode=get_inode(state.get_root()
    , parent_pathname);
    if(parent_inode == nullptr){
-      throw command_error ("cd: "+ parent_pathname + ": "+"file does not exist");
+      throw command_error ("cd: "+ parent_pathname + ": " \
+                           + "file does not exist");
       exec::status(1);
       return;
    }
