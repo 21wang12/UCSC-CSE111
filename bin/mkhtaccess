@@ -1,0 +1,89 @@
+#!/usr/bin/perl
+# $Id: mkhtaccess,v 1.26 2021-12-23 19:59:33-08 - - $
+
+$0 =~ s|.*/||;
+use strict;
+use warnings;
+
+my @data;
+while (<DATA>) {push @data, $_ unless m/^#/}
+
+#unless (@ARGV) {
+#   print STDERR "Usage: $0 course-root-directory...\n";
+#   exit 1;
+#}
+
+unless (@ARGV) {
+   push @ARGV, "/afs/cats.ucsc.edu/courses/$_"
+        for qw (cse110a-wm cse110b-wm cse111-wm cse112-wm);
+};
+
+for my $rootdir (@ARGV) {
+   $rootdir =~ s|/*$||;
+   if ($rootdir !~ m|^/afs/cats.ucsc.edu/courses/[^/]*/*$|) {
+      print STDERR "$0: $rootdir: not a course root directory\n";
+      next;
+   }
+   unless (chdir $rootdir) {
+      print STDERR "$0: chdir $rootdir: $!\n";
+      next;
+   }
+   print "$0: chdir $rootdir: OK\n";
+   my $htaccess = ".htaccess";
+   unless (open HTACCESS, ">$htaccess") {
+      print STDERR "$0: $htaccess: $!";
+      next;
+   }
+   print "$0: open >$htaccess: OK\n";
+   print HTACCESS "# \$Id\$\n\n";
+   print HTACCESS "AuthUserFile \"$rootdir/.htpasswd\"\n";
+   print HTACCESS "AuthType Basic\n";
+   print HTACCESS "AuthName \"$rootdir\"\n";
+   print HTACCESS @data;
+   close HTACCESS;
+}
+
+__DATA__
+
+#<Limit GET POST PUT>
+Satisfy any
+Order Deny,Allow
+Deny from all
+Allow from ucsc.edu
+Require valid-user
+#</Limit>
+
+#Options +Includes
+#Options All
+DirectoryIndex index.html .index
+HeaderName HEADER.html
+ReadmeName README
+
+IndexOptions +DescriptionWidth=*
+IndexOptions +FancyIndexing
+IndexOptions +FoldersFirst
+IndexOptions +IconHeight=12
+IndexOptions +NameWidth=50
+IndexOptions +SuppressDescription
+IndexOptions +SuppressHTMLPreamble
+IndexOptions -IconsAreLinks
+IndexOptions -IgnoreCase
+IndexOptions -SuppressIcon
+IndexOptions -SuppressSize
+
+IndexOrderDefault Ascending Name
+
+IndexIgnore .??*
+IndexIgnore HEADER.*
+IndexIgnore RCS
+IndexIgnore README.*
+
+AddType text/plain .lis
+AddType text/plain .mm
+AddType text/plain .pl
+AddType text/plain .scm
+AddType text/plain .st
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} ^.+/[0-9]+$
+

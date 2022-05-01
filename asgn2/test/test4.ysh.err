@@ -1,0 +1,2 @@
+yshell: mkdir: /this/mkdir/should/error: doesn't exist
+yshell: make: /foo/bar: is a directory

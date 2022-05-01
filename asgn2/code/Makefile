@@ -1,0 +1,64 @@
+#Daniel Zhong (rzhong6@ucsc.edu)
+#Qijun Lin (qlin25@ucsc.edu)
+
+MKFILE      = Makefile
+DEPSFILE    = ${MKFILE}.deps
+NOINCL      = check lint ci clean spotless 
+NEEDINCL    = ${filter ${NOINCL}, ${MAKECMDGOALS}}
+GMAKE       = ${MAKE} --no-print-directory
+GPPOPTS     = -std=gnu++20 -fdiagnostics-color=never
+GPPWARN     = -Wall -Wextra -Wpedantic -Wshadow -Wold-style-cast
+GPP         = g++ ${GPPOPTS} ${GPPWARN}
+COMPILECPP  = ${GPP} -g -O0 ${GPPOPTS}
+MAKEDEPSCPP = ${GPP} -MM ${GPPOPTS}
+
+MODULES     = commands debug file_sys util
+CPPHEADER   = ${MODULES:=.h}
+CPPSOURCE   = ${MODULES:=.cpp} main.cpp
+EXECBIN     = yshell
+OBJECTS     = ${CPPSOURCE:.cpp=.o}
+MODULESRC   = ${foreach MOD, ${MODULES}, ${MOD}.h ${MOD}.cpp}
+OTHERSRC    = ${filter-out ${MODULESRC}, ${CPPHEADER} ${CPPSOURCE}}
+ALLSOURCES  = ${MODULESRC} ${OTHERSRC} ${MKFILE}
+
+export PATH := ${PATH}:/root/wksp-simon/cse111/bin
+
+all : ${EXECBIN}
+
+${EXECBIN} : ${OBJECTS}
+	${COMPILECPP} -o $@ ${OBJECTS}
+
+%.o : %.cpp
+	- checksource $<
+	- cpplint.py.perl $<
+	${COMPILECPP} -c $<
+
+ci : check
+	- cid -is ${ALLSOURCES}
+
+check : ${ALLSOURCES}
+	- checksource ${ALLSOURCES}
+	- cpplint.py.perl ${CPPSOURCE}
+
+clean :
+	- rm -f ${OBJECTS} ${DEPSFILE} core ${EXECBIN}.errs ${EXECBIN}
+
+spotless : clean
+	- rm ${EXECBIN}
+
+
+deps : ${CPPSOURCE} ${CPPHEADER}
+	@ echo "# ${DEPSFILE} created $$(LC_TIME=C date)" >${DEPSFILE}
+	${MAKEDEPSCPP} ${CPPSOURCE} >>${DEPSFILE}
+
+${DEPSFILE} :
+	@ touch ${DEPSFILE}
+	${GMAKE} deps
+
+again :
+	${GMAKE} spotless deps ci all
+
+ifeq (${NEEDINCL}, )
+include ${DEPSFILE}
+endif
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+# $Id: mktar,v 1.1 2022-02-07 16:09:19-08 - - $
+
+
+echo gtar cvfz file.tar.gz files...

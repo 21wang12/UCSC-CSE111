@@ -1,0 +1,74 @@
+#!/usr/bin/perl
+# $Id: lcfn,v 1.2 2021-11-03 07:08:11-07 - - $
+#
+# NAME
+#    lcfn - convert arg filenames to lower case
+#
+# SYNOPSIS
+#    lcfn [-dluwx] filename...
+#
+# DESCRIPTION
+#    Renames files subject to options.  Improper characters for shell
+#    replaced by other characters, including spaces.  Also may convert
+#    hex, upper case, and underscores.
+#
+# OPTIONS
+#    -+  convert + chars to -
+#    -@  turn on all conversion flags
+#    -_  convert _ chars to -
+#    -c  convert [,] to -
+#    -d  convert directories as well as files
+#    -l  convert upper case letters to lower case
+#    -p  convert + chars to -
+#    -u  convert _ chars to -
+#    -w  convert --* chars to -
+#    -x  convert %xx hexadecimal to actual chars
+#
+
+use strict;
+use warnings;
+$0 =~ s{.*/}{};
+
+use Getopt::Std;
+my $optflags = '+@_cdlpuwx';
+my %options;
+getopts ($optflags, \%options);
+die "Usage: $0 [-dlux] filename...\n" unless @ARGV;
+
+if ($options{"@"}) {
+   $options{$_} = 1 for split m'', $optflags;
+}
+
+sub unhex {
+   my ($chr) = @_;
+   $chr =~ s/^%//;
+print $chr;
+   return sprintf "%c", hex ($chr);
+}
+
+for my $argfile (@ARGV) {
+   next if -d $argfile and not $options{"d"};
+   my ($dirname, $newfile) = $argfile =~ m{(.*/|)(.*)};
+   $newfile = lc $newfile if $options{"l"};
+   $newfile =~ s/%[0-9A-F][0-9A-F]/unhex $&/gie if $options{"x"};
+   $newfile =~ s/\s+/_/g;
+   $newfile =~ s/_/-/g if $options{"u"} or $options{"_"};
+   $newfile =~ s/\+/-/g if $options{"p"} or $options{"+"};
+   $newfile =~ s/[&\$]/+/g;
+   $newfile =~ s/[;!#\[\]\(\)\|<>{}]/-/g;
+   $newfile =~ s/[`"']//g;
+   $newfile =~ s/[,]/-/g if $options{"c"};
+   $newfile =~ s/-+/-/g if $options{"w"};
+   $newfile =~ s/_+/_/g if $options{"w"};
+   $newfile =~ s/[-_]*\././g if $options{"w"};
+   $newfile =~ s/^[-_]+//;
+   $newfile = $dirname . $newfile if $dirname;
+   next if $newfile eq $argfile;
+   print "mv $argfile $newfile\n";
+   if (-e $newfile) {
+      print STDERR "$0: overwrite $newfile (yes/no)?";
+      my $answer = <STDIN>;
+      next unless $answer =~ m/^y(es)?$/i;
+   };
+   rename $argfile, $newfile or print "$0: $argfile: $!\n";
+};

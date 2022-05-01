@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+# $Id: tolower,v 1.1 2021-11-03 07:03:00-07 - - $
+#
+# NAME
+#    tolower - convert text to lower or upper case
+#
+# SYNOPSIS
+#    tolower [-u] [files...]
+#
+# DESCRIPTION
+#    Converts input files or stdin to lower case.  File conventions
+#    follow the Perl <> operator.
+#
+# OPTIONS
+#    -u  Convert to upper case instead of to lower case
+#
+
+use locale;
+use POSIX;
+setlocale LC_CTYPE, iso_8859_1;
+$toupper = shift if @ARGV and $ARGV[0] =~ m/^-u$/;
+
+$toupper ? s/.*/\U$&/ : s/.*/\L$&/ and print while <>;
+

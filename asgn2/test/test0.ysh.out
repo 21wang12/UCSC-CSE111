@@ -1,0 +1,15 @@
+./yshell build Apr 29 2022 19:04:34
+% pwd
+/
+% echo Hello World
+Hello World
+% echo This is a very simple test.
+This is a very simple test.
+% 
+% #This is a very simple test.
+% #Are comments ignored?
+% #It should not print a message like
+% #yshell: #: no such function
+% #$Id: test0.ysh,v 1.2 2022-04-22 10:41:38-07 - - $
+% ^D
+yshell: exit(0)

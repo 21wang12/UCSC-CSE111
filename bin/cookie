@@ -1,0 +1,21 @@
+#!/bin/sh
+# $Id: cookie,v 1.7 2020-08-12 02:15:36-07 - - $
+
+cookies='
+
+   computers
+   goedel
+   kernelnewbies
+   linux
+   linuxcookie
+   literature
+   osfortune
+   perl
+   science
+
+'
+
+# fortune -s -c $cookies | sed -e '1s|/.*/||' -e '/^$/d'
+# fortune -s -c $cookies | sed -e '/^$/d'
+fortune -s -c $cookies | grep .
+

@@ -1,0 +1,19 @@
+#!/bin/sh
+# $Id: mkrecheaders,v 1.7 2021-12-28 11:01:34-08 - - $
+
+if [ $# -eq 0 ]
+then
+   set . $*
+fi
+
+for dir in $*
+do
+   for subdir in $(find $dir -type d -name RCS -prune \
+                          -o -type d -name usr -prune \
+                          -o -type d -name TA -prune \
+                          -o -type d -name '.?*' -prune \
+                          -o -type d -print)
+   do
+      (cd $subdir; mkheader)
+   done
+done

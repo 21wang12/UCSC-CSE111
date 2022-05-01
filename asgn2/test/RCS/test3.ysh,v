@@ -1,0 +1,83 @@
+head	1.3;
+access;
+symbols;
+locks;
+comment	@# @;
+
+
+1.3
+date	2022.04.22.17.41.38;	author -;	state -;
+branches;
+next	1.2;
+
+1.2
+date	2022.04.17.05.09.27;	author -;	state -;
+branches;
+next	1.1;
+
+1.1
+date	2013.01.03.03.11.43;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@-
+@
+text
+@mkdir dir
+cd dir
+mkdir dir2
+mkdir dir3
+cd dir3
+pwd
+make file with stuff
+make another file with stuff ?????? /*$#@@!#(){}[]
+cat another
+cat fle 
+echo what happened?  the previous command no such file
+prompt ysh:
+ls .
+ls ..
+lsr /
+# Note the error in fle above, it may error out at that
+# point or print another.
+# But the command after the failed cat must be executed.
+# $Id: test3.ysh,v 1.2 2022-04-16 22:09:27-07 - - $
+@
+
+
+1.2
+log
+@-
+@
+text
+@d8 1
+a8 1
+make another file with stuff
+d11 1
+a11 1
+echo what happened?  the previous command is bad
+d19 1
+a19 1
+# $Id: test3.ysh,v 1.1 2013-01-02 19:11:43-08 - - $
+@
+
+
+1.1
+log
+@-
+@
+text
+@d9 2
+a10 1
+cat fle another
+d19 1
+a19 1
+# $Id: test3.ysh,v 1.1 2010-12-13 20:21:17-08 - - $
+@

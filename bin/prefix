@@ -1,0 +1,8 @@
+#!/bin/sh
+# $Id: prefix,v 1.1 2022-02-23 15:10:16-08 - - $
+# prefix seq file
+
+seq=$1
+file=$2
+echo mv $file $seq-$file
+mv $file $seq-$file

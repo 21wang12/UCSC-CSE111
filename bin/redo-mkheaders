@@ -1,0 +1,41 @@
+#!/bin/sh
+# $Id: redo-mkheaders,v 1.20 2022-03-22 12:02:22-07 - - $
+
+script=$(basename $0)
+
+cse110a=/afs/cats.ucsc.edu/courses/cse110a-wm
+cse110b=/afs/cats.ucsc.edu/courses/cse110b-wm
+cse111=/afs/cats.ucsc.edu/courses/cse111-wm
+cse112=/afs/cats.ucsc.edu/courses/cse112-wm
+
+allroots="$cse110a $cse111 $cse112"
+defroots="$cse111"
+
+while getopts ar opt
+do
+   case $opt in
+      a) defroots="$allroots";;
+      r) recheaders=1;;
+      *) echo $(basename $0): $opt: invalid option; exit 1;;
+   esac
+done
+
+for rootdir in $defroots
+do
+   if [ -d $rootdir ]
+   then
+      cd $rootdir
+      echo $script: pwd=$(pwd)
+      for readme in Readme.all.*.txt
+      do
+         if [ -e $readme ]
+         then
+            cid -is $readme
+            mkreadme $readme
+            mkheader
+         fi
+         [ -n "$recheaders" ] && mkrecheaders 
+      done
+   fi
+done
+

@@ -1,0 +1,102 @@
+#!/usr/bin/perl
+# $Id: txt2html,v 1.45 2021-10-12 10:43:45-07 - - $
+#
+# NAME
+#    txt2html - convert text file to html, editing https?: strings
+#
+# SYNOPSIS
+#    txt2html textfile
+#
+# DESCRIPTION
+#    Reads textfile to replace strings of the form https?:\S+*
+#    with the directory name that it matches, if the directory
+#    exists.  Creates an html file from the textfile by editing
+#    all https?: strings into an html link.  The file is created
+#    with the suffix .txt or .text replaced by .html
+#    It also converts the text file into Postscript and PDF.
+#
+
+$0 =~ s|.*/||;
+use strict;
+use warnings;
+
+use Getopt::Std;
+
+$0 =~ s|^(.*/)?([^/]+)/*$|$2|;
+my $exit_status = 0;
+END {exit $exit_status}
+sub note(@) { print STDERR "$0: @_"; };
+$SIG{'__WARN__'} = sub { note @_; $exit_status = 1; };
+$SIG{'__DIE__'} = sub { warn @_; exit; };
+
+my %opts;
+getopts "v", \%opts;
+my $verbose = $opts{'v'};
+
+if (@ARGV != 1) {
+   print STDERR "Usage: $0 textfile\n";
+   $exit_status = 1;
+   exit;
+}
+
+my %htchars = qw (& &amp; < &lt; > &gt;);
+
+my $headtext = <<__END_HEADTEXT__;
+   <TITLE>~title~</TITLE>
+   <PRE>
+__END_HEADTEXT__
+$headtext =~ s/^#.*\n//gm;
+$headtext =~ s/^\s{3}//gm;
+
+my $textname = shift;
+open TEXTIN, "<$textname" or die "$textname: $!\n";
+print STDERR "open <$textname: OK\n" if $verbose;
+my @text = <TEXTIN>;
+close TEXTIN;
+
+my $edit_textname = 0;
+for my $line (@text) {
+   next unless $line =~ m/((^|\b)https?:)(\S+)\*/;
+   my ($prefix, $dirpat) = ($1, $3);
+   my @dir = glob "$dirpat*";
+   if (@dir == 1 and -d $dir[0]) {
+      if ($line =~ s|$prefix$dirpat\*|$prefix$dir[0]/|) {
+         $edit_textname = 1;
+         print "$0: $prefix$dir[0]\n";
+      }
+   }elsif (@dir > 1) {
+      warn "$dirpat*: more than one match\n";
+   }
+}
+    
+if ($edit_textname) {
+   system "cid -is $textname";
+   open TEXTOUT, ">$textname" or die "$textname: $!\n";
+   print "$0: open >$textname: OK\n" if $verbose;
+   print TEXTOUT @text; 
+   close TEXTOUT;
+}
+
+for my $line (@text) {
+   $line =~ s|[&<>]|$htchars{$&}|g;
+   $line =~ s{(^|\b)https?:\S+}{<A HREF=$&>$&</A>}g;
+}
+
+my $titlename = $textname;
+$titlename =~ s/\.(txt|text|cat)$//;
+my $htmlname = "$titlename.html";
+
+my $pwd = qx(pwd);
+chomp $pwd;
+$pwd =~ s|/afs/cats.ucsc.edu/courses/||;
+
+open HTMLOUT, ">$htmlname" or die "$htmlname: $!\n";
+print STDERR "open >$htmlname: # OK\n" if $verbose;
+my $head = $headtext;
+$head =~ s/~title~/$textname/;
+print HTMLOUT $head;
+print HTMLOUT @text;
+close HTMLOUT;
+
+system "ls -laofg $textname $htmlname" if $verbose;
+

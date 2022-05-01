@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+# $Id: shakespeare-quote,v 1.20 2020-08-23 00:25:27-07 - - $
+
+use strict;
+use warnings;
+
+$0 =~ s|.*/||;
+$SIG{'__DIE__'} = sub {print STDERR "$0: @_"; exit 1};
+
+my $url = "https://www.opensourceshakespeare.org";
+my $cmd = "wget -qO- $url";
+
+open QUOTE, "$cmd |" or die "$cmd: $!";
+my $page = join '', <QUOTE>;
+close QUOTE;
+
+$page =~ s|^.*?(Quotation of the moment.*?)</div>.*$|$1|si
+      or die "$url: quotation not found.\n";
+print "$url\n";
+
+$page =~  s/<\s*(P|BR)\s*(\s+.*?)?>\s*/\n/gmi;
+my @page = split m/\n/, $page;
+
+map {
+   s/&nbsp;\s*/\x20/gi;          # no-break spaces to spaces
+   s/&mdash;/--/gi;              # em dashes to ASCII
+   s/<\/?.*?>//gi;               # delete all other HTML tags
+   s/[\x80-\xFF]/*/gi;           # replace non-ASCII characters
+   s/\s+$//;                     # delete end of line spaces
+} @page;
+
+my $max = 60;
+for my $line (@page) {
+   while (length ($line) > $max
+       && $line =~ s/^(.{1,$max})\s+(.+)/$2/) {
+      print "$1\n";
+   }
+   print "$line\n";
+}
+
+print "\n";

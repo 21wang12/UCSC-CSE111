@@ -1,0 +1,36 @@
+#!/usr/bin/perl -w
+# $Id: calc,v 1.5 2021-03-02 11:03:28-08 - - $
+#
+# NAME
+#    calc
+#
+# SYNOPSIS
+#    calc [exprs...]
+#
+# DESCRIPTION
+#    Read each line, evaluate it as a Perl expression, and
+#    print the value.  If @ARGV is given, treat each element
+#    of @ARGV as a line.  Each input line or @ARGV element is
+#    a Perl expression, except that something matching the
+#    pattern /\#(\d+)/ refers to the value of line $1 and a
+#    match of /\#/ is the value of the most recent line.
+#
+
+use Math::Trig;
+use constant PI => acos(-1);
+use constant E => exp(1);
+
+sub log2 ($) {log ($_[0]) / log (2)}
+sub log10 ($) {log ($_[0]) / log (10)}
+sub rad ($) {$_[0] * 2 * PI / 360} # of degrees
+sub deg ($) {$_[0] / 2 / PI * 360} # of radians
+
+$INPUT = @ARGV ? 'shift @ARGV' : '<>';
+
+while ($calc = eval ($INPUT)) {
+   $calc =~ s{\#(\d+)?}
+             {"\$calc[" . (defined ($1) ? $1 : $#calc) . "]"}xge;
+   push @calc, $calc = eval ($calc) || 1e1000 / 1e1000;
+   printf "#%d=\t%.15g\n%s", $#calc, $calc, $@;
+}
+

@@ -1,0 +1,34 @@
+#!/usr/local/bin/perl -w
+# $Id: wcp,v 1.1 2021-11-03 07:05:15-07 - - $
+#
+# NAME
+#    wcp - count pages, lines, words, and characters
+#
+# SYNOPSIS
+#    wcp [-pagesize] [files...]
+#
+# DESCRIPTION
+#    Calls wc to compute lines, words, and characters, and then
+#    computes pages based on line count.
+#
+# OPTIONS
+#    -pagesize   number of lines per page
+#
+# BUGS
+#    Assumes the first number on a line is the line count.
+#
+
+$0 =~ s{.*/}{};
+$pagelen = @ARGV && $ARGV[0] =~ m/^-\d+$/ && - shift @ARGV || 64;
+
+sub pages($){ int (($_[0] + $pagelen - 1) / $pagelen) }
+
+$cmd = "wc @ARGV |";
+open WC, $cmd or die "$0: $cmd: $!";
+map{ m/\d+/; printf "%8d%s", pages $&, $_ } <WC>;
+close WC;
+
+__DATA__
+# Usage: wcp [-pagelen] [opts] [files...]
+# Prints 
+wc $* | awk '{K=($1+53)/54;printf"%8d%s\n",K,$0;N=N+K;}'

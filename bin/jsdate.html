@@ -1,0 +1,311 @@
+<HEAD>
+<STYLE>
+BODY {
+   color: #00FF00;
+   background-color: #000000;
+}
+TABLE {
+   border: 1px solid #00FF00;
+   border-spacing: 0;
+}
+TD {
+   border: 1px solid #00FF00;
+   padding-top: 0.25ex;
+   padding-bottom: 0.25ex;
+   padding-left: 0.333em;
+   padding-right: 0.333em;
+   vertical-align: top;
+}
+CODE {
+   display: block;
+   white-space: pre;
+}
+</STYLE>
+<SCRIPT>
+var date = new Date();
+
+function time_ampm_1() {
+   var hour = parseInt (date.getHours(), 10);
+   var min = ":" + ("0" + date.getMinutes()).slice (-2);
+   return (hour % 12 || 12) + min + (hour < 12 ? " AM" : " PM");
+}
+
+function time_ampm_2() {
+   return date.toLocaleTimeString().replace (/:\d\d\s/, " ");
+}
+
+function date_time_1() {
+   var day = date.toDateString().replace(/ \d+$/,"").replace(/ 0/," ");
+   var time = date.toLocaleTimeString().replace (/:\d\d\s/, " ");
+   return day + " @ " + time;
+}
+
+function date_toLocaleString() { return date.toLocaleString(); }
+function date_toLocaleDateString() { return date.toLocaleDateString(); }
+function date_toLocaleTimeString() { return date.toLocaleTimeString(); }
+function date_toString() { return date.toString(); }
+function date_toDateString() { return date.toDateString(); }
+function date_toTimeString() { return date.toTimeString(); }
+function date_getFullYear() { return date.getFullYear(); }
+function date_getMonth() { return date.getMonth(); }
+function date_getDate() { return date.getDate(); }
+function date_getHours() { return date.getHours(); }
+function date_getMinutes() { return date.getMinutes(); }
+function date_getSeconds() { return date.getSeconds(); }
+function date_getMilliseconds() { return date.getMilliseconds(); }
+function date_getTime() { return date.getTime(); }
+function date_getDay() { return date.getDay(); }
+function date_getTimezoneOffset() { return date.getTimezoneOffset(); }
+function date_toISOString() { return date.toISOString(); }
+function date_toUTCString() { return date.toUTCString(); }
+function date_getUTCFullYear() { return date.getUTCFullYear(); }
+function date_getUTCMonth() { return date.getUTCMonth(); }
+function date_getUTCDate() { return date.getUTCDate(); }
+function date_getUTCHours() { return date.getUTCHours(); }
+function date_getUTCMinutes() { return date.getUTCMinutes(); }
+function date_getUTCSeconds() { return date.getUTCSeconds(); }
+function date_getUTCMilliseconds() { return date.getUTCMilliseconds(); }
+function date_getUTCDay() { return date.getUTCDay(); }
+function date_toJSON() { return date.toJSON(); }
+</SCRIPT>
+</HEAD>
+<BODY>
+<TABLE>
+<TR>
+<TD>date.valueOf()</TD>
+<TD><SPAN id="new_date">
+<SCRIPT>
+document.getElementById ("new_date").innerHTML = date.valueOf();
+</SCRIPT></SPAN></TD>
+<TD>var date = new Date();<BR>
+</TD>
+</TR>
+<TR>
+<TD>time_ampm_1()</TD>
+<TD><SPAN id="time_ampm_1">
+<SCRIPT>
+document.getElementById ("time_ampm_1").innerHTML = time_ampm_1();
+</SCRIPT></SPAN></TD>
+<TD>function time_ampm_1() {<BR>
+&numsp;&numsp;&numsp;var hour = parseInt (date.getHours(), 10);<BR>
+&numsp;&numsp;&numsp;var min = ":" + ("0" + date.getMinutes()).slice (-2);<BR>
+&numsp;&numsp;&numsp;return (hour % 12 || 12) + min + (hour &lt; 12 ? " AM" : " PM");<BR>
+}<BR>
+</TD>
+</TR>
+<TR>
+<TD>time_ampm_2()</TD>
+<TD><SPAN id="time_ampm_2">
+<SCRIPT>
+document.getElementById ("time_ampm_2").innerHTML = time_ampm_2();
+</SCRIPT></SPAN></TD>
+<TD>function time_ampm_2() {<BR>
+&numsp;&numsp;&numsp;return date.toLocaleTimeString().replace (/:\d\d\s/, " ");<BR>
+}<BR>
+</TD>
+</TR>
+<TR>
+<TD>date_time_1()</TD>
+<TD><SPAN id="date_time_1">
+<SCRIPT>
+document.getElementById ("date_time_1").innerHTML = date_time_1();
+</SCRIPT></SPAN></TD>
+<TD>function date_time_1() {<BR>
+&numsp;&numsp;&numsp;var day = date.toDateString().replace(/ \d+$/,"").replace(/ 0/," ");<BR>
+&numsp;&numsp;&numsp;var time = date.toLocaleTimeString().replace (/:\d\d\s/, " ");<BR>
+&numsp;&numsp;&numsp;return day + " @ " + time;<BR>
+}<BR>
+</TD>
+</TR>
+<TR>
+<TD>toLocaleString()</TD>
+<TD><SPAN id="toLocaleString()">
+<SCRIPT>document.getElementById ("toLocaleString()").innerHTML = date_toLocaleString();
+</SCRIPT></SPAN></TD>
+<TD> Converts Date object to string, using locale </TD>
+</TR>
+<TR>
+<TD>toLocaleDateString()</TD>
+<TD><SPAN id="toLocaleDateString()">
+<SCRIPT>document.getElementById ("toLocaleDateString()").innerHTML = date_toLocaleDateString();
+</SCRIPT></SPAN></TD>
+<TD> Get date portion of Date object, using locale </TD>
+</TR>
+<TR>
+<TD>toLocaleTimeString()</TD>
+<TD><SPAN id="toLocaleTimeString()">
+<SCRIPT>document.getElementById ("toLocaleTimeString()").innerHTML = date_toLocaleTimeString();
+</SCRIPT></SPAN></TD>
+<TD> Get time portion of Date object, using locale </TD>
+</TR>
+<TR>
+<TD>toString()</TD>
+<TD><SPAN id="toString()">
+<SCRIPT>document.getElementById ("toString()").innerHTML = date_toString();
+</SCRIPT></SPAN></TD>
+<TD> Converts Date object to string </TD>
+</TR>
+<TR>
+<TD>toDateString()</TD>
+<TD><SPAN id="toDateString()">
+<SCRIPT>document.getElementById ("toDateString()").innerHTML = date_toDateString();
+</SCRIPT></SPAN></TD>
+<TD> Converts date portion of Date object to string </TD>
+</TR>
+<TR>
+<TD>toTimeString()</TD>
+<TD><SPAN id="toTimeString()">
+<SCRIPT>document.getElementById ("toTimeString()").innerHTML = date_toTimeString();
+</SCRIPT></SPAN></TD>
+<TD> Converts time portion of Date object to string </TD>
+</TR>
+<TR>
+<TD>getFullYear()</TD>
+<TD><SPAN id="getFullYear()">
+<SCRIPT>document.getElementById ("getFullYear()").innerHTML = date_getFullYear();
+</SCRIPT></SPAN></TD>
+<TD> Get year as four digit number (yyyy) </TD>
+</TR>
+<TR>
+<TD>getMonth()</TD>
+<TD><SPAN id="getMonth()">
+<SCRIPT>document.getElementById ("getMonth()").innerHTML = date_getMonth();
+</SCRIPT></SPAN></TD>
+<TD> Get month as number (0-11) </TD>
+</TR>
+<TR>
+<TD>getDate()</TD>
+<TD><SPAN id="getDate()">
+<SCRIPT>document.getElementById ("getDate()").innerHTML = date_getDate();
+</SCRIPT></SPAN></TD>
+<TD> Get day as number (1-31) </TD>
+</TR>
+<TR>
+<TD>getHours()</TD>
+<TD><SPAN id="getHours()">
+<SCRIPT>document.getElementById ("getHours()").innerHTML = date_getHours();
+</SCRIPT></SPAN></TD>
+<TD> Get hour (0-23) </TD>
+</TR>
+<TR>
+<TD>getMinutes()</TD>
+<TD><SPAN id="getMinutes()">
+<SCRIPT>document.getElementById ("getMinutes()").innerHTML = date_getMinutes();
+</SCRIPT></SPAN></TD>
+<TD> Get minute (0-59) </TD>
+</TR>
+<TR>
+<TD>getSeconds()</TD>
+<TD><SPAN id="getSeconds()">
+<SCRIPT>document.getElementById ("getSeconds()").innerHTML = date_getSeconds();
+</SCRIPT></SPAN></TD>
+<TD> Get second (0-59) </TD>
+</TR>
+<TR>
+<TD>getMilliseconds()</TD>
+<TD><SPAN id="getMilliseconds()">
+<SCRIPT>document.getElementById ("getMilliseconds()").innerHTML = date_getMilliseconds();
+</SCRIPT></SPAN></TD>
+<TD> Get millisecond (0-999) </TD>
+</TR>
+<TR>
+<TD>getTime()</TD>
+<TD><SPAN id="getTime()">
+<SCRIPT>document.getElementById ("getTime()").innerHTML = date_getTime();
+</SCRIPT></SPAN></TD>
+<TD> Get time (milliseconds since January 1, 1970) </TD>
+</TR>
+<TR>
+<TD>getDay()</TD>
+<TD><SPAN id="getDay()">
+<SCRIPT>document.getElementById ("getDay()").innerHTML = date_getDay();
+</SCRIPT></SPAN></TD>
+<TD> Get weekday as number (0-6) </TD>
+</TR>
+<TR>
+<TD>getTimezoneOffset()</TD>
+<TD><SPAN id="getTimezoneOffset()">
+<SCRIPT>document.getElementById ("getTimezoneOffset()").innerHTML = date_getTimezoneOffset();
+</SCRIPT></SPAN></TD>
+<TD> Get difference between UTC and local time, minutes </TD>
+</TR>
+<TR>
+<TD>toISOString()</TD>
+<TD><SPAN id="toISOString()">
+<SCRIPT>document.getElementById ("toISOString()").innerHTML = date_toISOString();
+</SCRIPT></SPAN></TD>
+<TD> Get date, using ISO standard </TD>
+</TR>
+<TR>
+<TD>toUTCString()</TD>
+<TD><SPAN id="toUTCString()">
+<SCRIPT>document.getElementById ("toUTCString()").innerHTML = date_toUTCString();
+</SCRIPT></SPAN></TD>
+<TD> Converts Date object to string, UTC </TD>
+</TR>
+<TR>
+<TD>getUTCFullYear()</TD>
+<TD><SPAN id="getUTCFullYear()">
+<SCRIPT>document.getElementById ("getUTCFullYear()").innerHTML = date_getUTCFullYear();
+</SCRIPT></SPAN></TD>
+<TD> Get year, UTC </TD>
+</TR>
+<TR>
+<TD>getUTCMonth()</TD>
+<TD><SPAN id="getUTCMonth()">
+<SCRIPT>document.getElementById ("getUTCMonth()").innerHTML = date_getUTCMonth();
+</SCRIPT></SPAN></TD>
+<TD> Get month, UTC (from 0-11) </TD>
+</TR>
+<TR>
+<TD>getUTCDate()</TD>
+<TD><SPAN id="getUTCDate()">
+<SCRIPT>document.getElementById ("getUTCDate()").innerHTML = date_getUTCDate();
+</SCRIPT></SPAN></TD>
+<TD> Get day of month, UTC (from 1-31) </TD>
+</TR>
+<TR>
+<TD>getUTCHours()</TD>
+<TD><SPAN id="getUTCHours()">
+<SCRIPT>document.getElementById ("getUTCHours()").innerHTML = date_getUTCHours();
+</SCRIPT></SPAN></TD>
+<TD> Get hour, UTC (from 0-23) </TD>
+</TR>
+<TR>
+<TD>getUTCMinutes()</TD>
+<TD><SPAN id="getUTCMinutes()">
+<SCRIPT>document.getElementById ("getUTCMinutes()").innerHTML = date_getUTCMinutes();
+</SCRIPT></SPAN></TD>
+<TD> Get minutes, UTC (from 0-59) </TD>
+</TR>
+<TR>
+<TD>getUTCSeconds()</TD>
+<TD><SPAN id="getUTCSeconds()">
+<SCRIPT>document.getElementById ("getUTCSeconds()").innerHTML = date_getUTCSeconds();
+</SCRIPT></SPAN></TD>
+<TD> Get seconds, UTC (from 0-59) </TD>
+</TR>
+<TR>
+<TD>getUTCMilliseconds()</TD>
+<TD><SPAN id="getUTCMilliseconds()">
+<SCRIPT>document.getElementById ("getUTCMilliseconds()").innerHTML = date_getUTCMilliseconds();
+</SCRIPT></SPAN></TD>
+<TD> Get milliseconds, UTC (from 0-999) </TD>
+</TR>
+<TR>
+<TD>getUTCDay()</TD>
+<TD><SPAN id="getUTCDay()">
+<SCRIPT>document.getElementById ("getUTCDay()").innerHTML = date_getUTCDay();
+</SCRIPT></SPAN></TD>
+<TD> Get day of week, UTC (from 0-6) </TD>
+</TR>
+<TR>
+<TD>toJSON()</TD>
+<TD><SPAN id="toJSON()">
+<SCRIPT>document.getElementById ("toJSON()").innerHTML = date_toJSON();
+</SCRIPT></SPAN></TD>
+<TD> Date as a string, formatted as a JSON date </TD>
+</TR>
+</TABLE>
+</BODY>
+<P>Created by jsdate.perl: Saturday 2022 April  2 @ 2:38:30 PM CST

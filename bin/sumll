@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+# $Id: sumll,v 1.5 2020-08-21 16:59:21-07 - - $
+#
+# NAME
+#    sumll - find the sum of sizes of files output by ls -bgoa
+#
+# SYMOPSIS
+#    sumll [args...]
+#
+# DESCRIPTION
+#    Runs ls -bgoa on the arguments and prints the sum of all
+#    sizes from the output.
+#
+
+$0 =~ s|.*/||;
+use strict;
+use warnings;
+
+my $command = "ls -bgoa @ARGV";
+my $total = 0;
+open LS, "$command |" or die "$0: $command: $!\n";
+while (<LS>) {
+   print;
+   my @line = split ' ';
+   next unless @line >=  2;
+   next unless $line[1] =~ m/^\d+$/;
+   $total += $&;
+}
+close LS;
+
+my $K = 1<<10;
+printf "$0: command: $command\n";
+printf "total = %10.0f   B\n", $total;
+printf "total = %12.1f KiB\n", $total / $K;
+printf "total = %12.1f MiB\n", $total / $K / $K;
+
