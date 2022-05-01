@@ -2,7 +2,7 @@
 
 The first 2 asgn website is: https://www2.ucsc.edu/courses/cse111-wm/:/
 
-We change professior because the previous professior got ill.
+We change professor because the previous professor got ill.
 
 The remian asgn websit is: 
 
