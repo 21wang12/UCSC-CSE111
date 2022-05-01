@@ -1,3 +1,11 @@
+# Description
+
+The first 2 asgn website is: https://www2.ucsc.edu/courses/cse111-wm/:/
+
+We change professior because the previous professior got ill.
+
+The remian asgn websit is: 
+
 # Usage:
 
 1. goto `asgn<n>/code` folder, edit `Makefile`, find and add `bin` folder to PATH variable
