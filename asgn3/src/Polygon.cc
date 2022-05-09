@@ -28,8 +28,8 @@ bool Polygon::ContainedBy(Polygon &polygon) {
         Line outter_line = Line(outter_curr_point, outter_next_point);
         int inner_sz = vertices.size();
         for(int j = 0; j < inner_sz; j++) {
-            Point inner_curr_point = polygon.vertices[i];
-            Point inner_next_point = polygon.vertices[(i+1)%outter_sz];
+            Point inner_curr_point = vertices[j];
+            Point inner_next_point = vertices[(j+1)%outter_sz];
             Line inner_line = Line(inner_curr_point, inner_next_point);
             if(Geom::Intersect(outter_line, inner_line) == collision_type::CROSS_TYPE) {
                 return false;
