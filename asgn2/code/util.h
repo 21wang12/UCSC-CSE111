@@ -1,5 +1,3 @@
-//Daniel Zhong (rzhong6@ucsc.edu)
-//Qijun Lin (qlin25@ucsc.edu)
 
 // util -
 //    A utility to provide various services not conveniently

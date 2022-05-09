@@ -1,5 +1,4 @@
-//Daniel Zhong (rzhong6@ucsc.edu)
-//Qijun Lin (qlin25@ucsc.edu)
+
 
 #ifndef DEBUG_H
 #define DEBUG_H

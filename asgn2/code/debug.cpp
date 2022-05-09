@@ -1,5 +1,5 @@
-//Daniel Zhong (rzhong6@ucsc.edu)
-//Qijun Lin (qlin25@ucsc.edu)
+
+
 
 #include <climits>
 #include <iostream>

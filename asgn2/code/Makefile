@@ -1,5 +1,3 @@
-#Daniel Zhong (rzhong6@ucsc.edu)
-#Qijun Lin (qlin25@ucsc.edu)
 
 MKFILE      = Makefile
 DEPSFILE    = ${MKFILE}.deps
@@ -7,7 +5,8 @@ NOINCL      = check lint ci clean spotless
 NEEDINCL    = ${filter ${NOINCL}, ${MAKECMDGOALS}}
 GMAKE       = ${MAKE} --no-print-directory
 GPPOPTS     = -std=gnu++20 -fdiagnostics-color=never
-GPPWARN     = -Wall -Wextra -Wpedantic -Wshadow -Wold-style-cast
+GPPWARN     = -Wall -Wextra -Wpe
+tic -Wshadow -Wold-style-cast
 GPP         = g++ ${GPPOPTS} ${GPPWARN}
 COMPILECPP  = ${GPP} -g -O0 ${GPPOPTS}
 MAKEDEPSCPP = ${GPP} -MM ${GPPOPTS}

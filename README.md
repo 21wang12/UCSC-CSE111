@@ -82,3 +82,15 @@ Rest of our assignments websit were published at:
     Ref: this [post](https://stackoverflow.com/a/67453352)
 
 
+3. How to install `lcov` for code coverage test.
+    ```bash
+    apt install lcov
+    ```
+
+4 How to install `google-test lib`
+
+
+
+    ```bash
+    sudo apt-get install libgtest-dev
+    ```

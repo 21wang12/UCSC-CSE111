@@ -1,6 +1,7 @@
 #include "Reuleaux.h"
 #include "Circle.h"
 #include "Geom.h"
+#include "Polygon.h"
 
 ReuleauxTriangle::ReuleauxTriangle(const Point vertices[3]){
     for(int i = 0; i < 3; i++){
@@ -9,6 +10,9 @@ ReuleauxTriangle::ReuleauxTriangle(const Point vertices[3]){
 }
 
 bool ReuleauxTriangle::ContainedBy(Circle &circle){
+    if(circle.ContainedBy(*this)){
+        return false;
+    }
     for(int i = 0; i < 3; i++){
         if(!Geom::PointInCircle(circle, vertices[i])){
             return false;
@@ -18,6 +22,9 @@ bool ReuleauxTriangle::ContainedBy(Circle &circle){
 }
 
 bool ReuleauxTriangle::ContainedBy(Polygon &polygon){
+    if(polygon.ContainedBy(*this)){
+        return false;
+    }
     for(int i = 0; i < 3; i++){
         if(!Geom::PointInPolygon(polygon, vertices[i])){
             return false;
