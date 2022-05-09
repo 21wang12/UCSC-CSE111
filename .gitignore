@@ -1,0 +1,4 @@
+*.o
+*.deps
+.DS_Store
+.gitignore

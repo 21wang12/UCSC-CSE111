@@ -48,7 +48,7 @@ lis : ${ALLSOURCES}
 	mkpspdf ${LISTING} ${ALLSOURCES} ${DEPSFILE}
 
 clean :
-	- rm ${OBJECTS} ${DEPSFILE} core ${EXECBIN}.errs
+	- rm -rf ${OBJECTS} ${DEPSFILE} core ${EXECBIN}.errs
 
 spotless : clean
 	- rm ${EXECBIN} ${LISTING} ${LISTING:.ps=.pdf}

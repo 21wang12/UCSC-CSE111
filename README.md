@@ -46,26 +46,28 @@ Rest of our assignments websit were published at:
 
 # Misc
 
-1. How to download start code files:
+1. How to download start code files(if you are using this repo, you should skip this section):
 
-    Before start the course, please download bin file.
+    Before start the course, please download bin file which Makefile will fire up some command (eg: checksource.perl) in this folder.
 
     ```bash
     mkdir bin
     cd bin
     wget -nH --cut-dir=8 -e robots=off -r --no-parent -l1 -R "*.html*,*.gif" https://www2.ucsc.edu/courses/cse111-wm/:/bin/
+    chmod 777 *.perl
     ```
 
-    Take asgn1 as example, below shows how to download code in asgn1.
+    Below shows how to download start code provided by professor.
 
     ```bash
+    #asng1
     mkdir asgn1
     cd asgn1
-    #asng1
     wget -nH --cut-dir=8 -e robots=off -r --no-parent -l1 -R "*.html*,*.gif" https://www2.ucsc.edu/courses/cse111-wm/:/Assignments/asg1-dc-bigint/code
+    
+    # asgn2
     mkdir asgn2
     cd asgn2
-    # asgn2
     wget -nH --cut-dir=8 -e robots=off -r --no-parent -l1 -R "*.html*,*.gif" https://www2.ucsc.edu/courses/cse111-wm/:/Assignments/asg2-shell-fnptrs-oop/code/
     ```
 
