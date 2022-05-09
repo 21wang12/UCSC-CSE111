@@ -109,7 +109,7 @@ collision_type Geom::Intersect(const Circle &circle, const Line &line){
 
 Point Geom::Centroid(const Polygon &polygon){
     Point center = Point(0, 0);
-    int i = 0;
+    size_t i = 0;
     for(i = 0; i < polygon.vertices.size(); i++){
         Point vertex = polygon.vertices[i];
         center.x += vertex.x;

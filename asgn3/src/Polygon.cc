@@ -46,7 +46,7 @@ bool Polygon::ContainedBy(ReuleauxTriangle &rt){
     double radius = Geom::Separation(rt.vertices[0], rt.vertices[1]);
     for(int i = 0; i < 3; i++){
         Circle reuleaux_circle = Circle(rt.vertices[i], radius);
-        for(int i = 0; i < vertices.size(); i++){
+        for(size_t i = 0; i < vertices.size(); i++){
             if(! (Geom::Separation(reuleaux_circle.center, vertices[i]) <= reuleaux_circle.radius + EPS)){
                 return false;
             }
