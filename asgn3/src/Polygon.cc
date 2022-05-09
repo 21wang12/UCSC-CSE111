@@ -11,7 +11,7 @@ Polygon::Polygon(std::vector<Point> vertices){
 }
 
 bool Polygon::ContainedBy(Circle &circle) {
-    for(int i = 0; i < vertices.size(); i++){
+    for(size_t i = 0; i < vertices.size(); i++){
         if(! (Geom::Separation(vertices[i], circle.center) <= circle.radius + EPS) ) {
             return false;
         }
@@ -30,7 +30,7 @@ bool Polygon::ContainedBy(Polygon &polygon) {
         for(int j = 0; j < inner_sz; j++) {
             Point inner_curr_point = polygon.vertices[i];
             Point inner_next_point = polygon.vertices[(i+1)%outter_sz];
-            Line inner_line = Line(outter_curr_point, outter_next_point);
+            Line inner_line = Line(inner_curr_point, inner_next_point);
             if(Geom::Intersect(outter_line, inner_line) == collision_type::CROSS_TYPE) {
                 return false;
             }

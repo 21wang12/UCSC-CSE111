@@ -1,0 +1,44 @@
+src/Polygon.cc: In member function ‘virtual bool Polygon::ContainedBy(Circle&)’:
+src/Polygon.cc:14:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Point>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   14 |     for(int i = 0; i < vertices.size(); i++){
+      |                    ~~^~~~~~~~~~~~~~~~~
+src/Polygon.cc: In member function ‘virtual bool Polygon::ContainedBy(Polygon&)’:
+src/Polygon.cc:31:19: warning: variable ‘inner_curr_point’ set but not used [-Wunused-but-set-variable]
+   31 |             Point inner_curr_point = polygon.vertices[i];
+      |                   ^~~~~~~~~~~~~~~~
+src/Polygon.cc:32:19: warning: variable ‘inner_next_point’ set but not used [-Wunused-but-set-variable]
+   32 |             Point inner_next_point = polygon.vertices[(i+1)%outter_sz];
+      |                   ^~~~~~~~~~~~~~~~
+src/Polygon.cc: In member function ‘virtual bool Polygon::ContainedBy(ReuleauxTriangle&)’:
+src/Polygon.cc:49:26: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Point>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   49 |         for(int i = 0; i < vertices.size(); i++){
+      |                        ~~^~~~~~~~~~~~~~~~~
+src/Geom.cc: In static member function ‘static Point Geom::Centroid(const Polygon&)’:
+src/Geom.cc:113:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Point>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  113 |     for(i = 0; i < polygon.vertices.size(); i++){
+      |                ~~^~~~~~~~~~~~~~~~~~~~~~~~~
+tests/ReuleauxPolygonTest.cc: In member function ‘virtual void ReuleauxPolygon_TouchInside_Test::TestBody()’:
+tests/ReuleauxPolygonTest.cc:71:22: warning: variable ‘rt’ set but not used [-Wunused-but-set-variable]
+   71 |     ReuleauxTriangle rt = ReuleauxTriangle(rt_vertices);
+      |                      ^~
+tests/ReuleauxPolygonTest.cc: In member function ‘virtual void ReuleauxPolygon_TouchOutside_Test::TestBody()’:
+tests/ReuleauxPolygonTest.cc:85:22: warning: variable ‘rt’ set but not used [-Wunused-but-set-variable]
+   85 |     ReuleauxTriangle rt = ReuleauxTriangle(rt_vertices);
+      |                      ^~
+tests/ReuleauxPolygonTest.cc: In member function ‘virtual void ReuleauxPolygon_Conincedent_Test::TestBody()’:
+tests/ReuleauxPolygonTest.cc:99:22: warning: variable ‘rt’ set but not used [-Wunused-but-set-variable]
+   99 |     ReuleauxTriangle rt = ReuleauxTriangle(rt_vertices);
+      |                      ^~
+tests/CirclePolygonTest.cc: In member function ‘virtual void CirclePolygon_Intersect_Test::TestBody()’:
+tests/CirclePolygonTest.cc:65:13: error: redeclaration of ‘Polygon polygon’
+   65 |     Polygon polygon = Polygon(vertices);
+      |             ^~~~~~~
+tests/CirclePolygonTest.cc:64:13: note: ‘Polygon polygon’ previously declared here
+   64 |     Polygon polygon = Polygon(vertices);
+      |             ^~~~~~~
+/usr/bin/ld: cannot find obj/CirclePolygonTest.o: No such file or directory
+collect2: error: ld returned 1 exit status
+src/Polygon.cc: In member function ‘virtual bool Polygon::ContainedBy(ReuleauxTriangle&)’:
+src/Polygon.cc:49:26: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Point>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   49 |         for(int i = 0; i < vertices.size(); i++){
+      |                        ~~^~~~~~~~~~~~~~~~~

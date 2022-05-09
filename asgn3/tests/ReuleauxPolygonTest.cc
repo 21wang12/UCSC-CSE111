@@ -40,16 +40,15 @@ TEST(ReuleauxPolygon, Outside)
 
 TEST(ReuleauxPolygon, Surround)
 {
+    std::vector<Point> vertices;
+    vertices.push_back(Point(8.56, 7.46));
+    vertices.push_back(Point(10 , 6));
+    vertices.push_back(Point(8.77, 4.68));
+    Polygon polygon = Polygon(vertices);
+
     Point rt_vertices[3] = {Point(8,8), Point(8,4), Point(11.46,6)};
     ReuleauxTriangle rt = ReuleauxTriangle(rt_vertices);
-    std::vector<Point> vertices;
-    vertices.push_back(Point(-2.34, 2.04));
-    vertices.push_back(Point(-2.89, 1.65));
-    vertices.push_back(Point(-2.18, 0.76));
-    vertices.push_back(Point(-1.5, 1.5));
-    vertices.push_back(Point(-1.72, 2.82));
-    Polygon polygon = Polygon(vertices);
-    //ASSERT_FALSE(rt.ContainedBy(polygon));
+    ASSERT_FALSE(rt.ContainedBy(polygon));
 }
 
 TEST(ReuleauxPolygon, Intersect)
@@ -63,7 +62,7 @@ TEST(ReuleauxPolygon, Intersect)
     vertices.push_back(Point(-1.5, 1.5));
     vertices.push_back(Point(-1.72, 2.82));
     Polygon polygon = Polygon(vertices);
-    //ASSERT_FALSE(rt.ContainedBy(polygon));
+    ASSERT_FALSE(rt.ContainedBy(polygon));
 }
 
 TEST(ReuleauxPolygon, TouchInside)
