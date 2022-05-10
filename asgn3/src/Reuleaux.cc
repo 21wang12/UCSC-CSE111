@@ -56,6 +56,8 @@ bool ReuleauxTriangle::ContainedBy(Polygon &polygon){
     return true;
 }
 
+// FIXME: if inner_rt's radius < outter_rt's radius,
+// then one of inner_rt circle should within one of outter_rt circle 
 bool ReuleauxTriangle::ContainedBy(ReuleauxTriangle &rt){
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
