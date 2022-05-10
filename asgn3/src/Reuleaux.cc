@@ -13,11 +13,34 @@ bool ReuleauxTriangle::ContainedBy(Circle &circle){
     if(circle.ContainedBy(*this)){
         return false;
     }
-    for(int i = 0; i < 3; i++){
-        if(!Geom::PointInCircle(circle, vertices[i])){
+
+    double radius = Geom::Separation(vertices[0], vertices[1]);
+    if(radius<circle.radius){
+        Circle rt_circle1 = Circle(vertices[0], radius);
+        Circle rt_circle2 = Circle(vertices[1], radius);
+        Circle rt_circle3 = Circle(vertices[2], radius);
+        if(rt_circle1.ContainedBy(circle) || rt_circle2.ContainedBy(circle) ||rt_circle3.ContainedBy(circle)){
+            for(int i = 0; i < 3; i++){
+                if(!Geom::PointInCircle(circle, vertices[i])){
+                    return false;
+                }
+            return true;
+            }
+        }
+        else{
             return false;
         }
+        
     }
+    else{
+        for(int i = 0; i < 3; i++){
+            if(!Geom::PointInCircle(circle, vertices[i])){
+                return false;
+            }
+        }
+    }
+
+    
     return true;
 }
 

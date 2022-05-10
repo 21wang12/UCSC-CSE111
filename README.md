@@ -15,13 +15,14 @@ Rest of our assignments websit were published at:
 │   └── test/           # hold grading script file.
 ├── asgn2/              # yshell.
 │   ├── code/               
-│   └── test/           
+│   └── test/       
+├── asgn3/              # bounds checker. 
 ├── bin/                
 ├── README.md           # provided at: https://www2.ucsc.edu/courses/cse111-wm/:/bin/
 └── resource/           # .pdf files: assignment description
 ```
 
-# Usage:
+# Usage(asgn1 & asng2):
 0. clone this repo.
 
     ```bash
@@ -43,6 +44,21 @@ Rest of our assignments websit were published at:
 5. run `mk.tests` command for gradding.
 
 6. submit `code` folder and enjoy it.
+
+# Usage(asgn3 ~ asgn<n>)
+0. clone this repo.
+
+    ```bash
+    git clone git@github.com:21wang12/UCSC-CSE111.git
+    cd ./UCSC-CSE111/
+    ```
+1. using `cd` command goto `asgn<n>/` folder `n` is alternative for `3, 4, 5, 6`
+
+2. run `make` command create executable binary file under `asgn<n>` folder
+
+3. run `make grade` command for grading script.
+
+4. enjoy it.
 
 # Misc
 
@@ -78,7 +94,6 @@ Rest of our assignments websit were published at:
     ```
 
 2. How to install gcc-11 which support `g++ -std=gnu++20`
-
     Ref: this [post](https://stackoverflow.com/a/67453352)
 
 
@@ -88,9 +103,6 @@ Rest of our assignments websit were published at:
     ```
 
 4 How to install `google-test lib`
-
-
-
     ```bash
     sudo apt-get install libgtest-dev
     ```

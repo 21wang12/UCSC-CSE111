@@ -41,10 +41,9 @@ TEST(ReuleauxCircle, Surround)
 
 TEST(ReuleauxCircle, Intersect)
 {
-    Point rt_vertices[3] = {Point(8,8), Point(8,4), Point(11.46,6)};
-    ReuleauxTriangle rt = ReuleauxTriangle(rt_vertices);
-    Circle circle = Circle(Point(10.15,6), std::sqrt(5.45));
-
+    Point vertices[3] = {Point(-2,0), Point(0,sqrt(12)), Point(2,0)};
+    ReuleauxTriangle rt = ReuleauxTriangle(vertices);
+    Circle circle = Circle(Point(-4.49,2.0), 2.0);
     ASSERT_FALSE(rt.ContainedBy(circle));
 }
 
