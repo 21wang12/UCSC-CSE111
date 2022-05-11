@@ -61,8 +61,7 @@ Rest of our assignments websit were published at:
 4. enjoy it.
 
 # Misc
-
-1. How to download start code files(if you are using this repo, you should skip this section):
+- How to download start code files(if you are using this repo, you should skip this section):
 
     Before start the course, please download bin file which Makefile will fire up some command (eg: checksource.perl) in this folder.
 
@@ -93,16 +92,16 @@ Rest of our assignments websit were published at:
     export PATH := ${PATH}:/path/to/bin
     ```
 
-2. How to install gcc-11 which support `g++ -std=gnu++20`
+- How to install gcc-11 which support `g++ -std=gnu++20`
     Ref: this [post](https://stackoverflow.com/a/67453352)
 
 
-3. How to install `lcov` for code coverage test.
+- How to install `lcov` for code coverage test.
     ```bash
     apt install lcov
     ```
 
-4 How to install `google-test lib`
+- How to install `google-test lib`
     ```bash
     sudo apt-get install libgtest-dev
     ```

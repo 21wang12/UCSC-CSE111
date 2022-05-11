@@ -77,6 +77,16 @@ TEST(ReuleauxReuleaux, TouchOutside)
     ASSERT_FALSE(inner.ContainedBy(outter));
 }
 
+TEST(ReuleauxReuleaux, Conincedent2)
+{
+    Point inner_vertices[3] = {Point(-0.97,-2.65), Point(0.07,-0.59), Point(-2.23,-0.72)};
+    Point outter_vertices[3] = {Point(-4.0,0.0), Point(0.0,0.0), Point(-2.0,3.46)};
+
+    ReuleauxTriangle inner = ReuleauxTriangle(inner_vertices);
+    ReuleauxTriangle outter = ReuleauxTriangle(outter_vertices);
+
+    ASSERT_FALSE(inner.ContainedBy(outter));
+}
 TEST(ReuleauxReuleaux, Conincedent)
 {
     Point inner_vertices[3] = {Point(8,8), Point(8,4), Point(11.46,6)};
