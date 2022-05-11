@@ -20,7 +20,7 @@
 CFLAGS = -Llib -Wall -Wextra -Iinclude -fno-exceptions -pthread
 VFLAGS = --track-origins=yes --leak-check=full --show-leak-kinds=all
 # C++ 20 via GCC 10 as 11 lcov is mildly broken
-CC = g++-10 -std=c++20 
+CC = g++ -std=c++20 -g
 
 # Assignment No.
 # a = 5
@@ -38,13 +38,13 @@ SRCOBJS = $(addprefix $(OBJ)/, $(notdir $(patsubst $(SRC)/%.cc, %.o, $(SRCFILES)
 
 all: clean radix mperf
 
-unsetcov: 
+unsetcov:
 	$(eval TCFLAGS := -Wall)
 
-setcov: 
+setcov:
 	$(eval TCFLAGS := --coverage)
 
-radix: unsetcov $(SRCOBJS) 
+radix: unsetcov $(SRCOBJS)
 	$(CC) $(CFLAGS) $(TCFLAGS) -o radix $(SRCOBJS) -lradix 2>&1 | tee cc.out
 	@cat cc.out >> make.out
 
