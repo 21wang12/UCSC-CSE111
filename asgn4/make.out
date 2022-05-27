@@ -1,0 +1,4 @@
+src/radix.cc: In member function ‘void ParallelRadixSort::msd(std::vector<std::reference_wrapper<std::vector<unsigned int> > >&, unsigned int)’:
+src/radix.cc:10:93: warning: unused parameter ‘lists’ [-Wunused-parameter]
+   10 | void ParallelRadixSort::msd(std::vector<std::reference_wrapper<std::vector<unsigned int>>> &lists, unsigned int cores) {
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~

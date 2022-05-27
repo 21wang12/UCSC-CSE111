@@ -34,6 +34,14 @@
  */
 class ParallelRadixSort {
 public:
+
+    /*
+     * Returns an array with 10 elements of counts corresponding to the number
+     * of elements in data with digit d at the l’th MSD position.
+     * k is a constant representing the maximum number of digits for any given number in the data.
+     */
+    std::array<int, 10> buildHistogram(std::vector<unsigned int> &data, int l, int k, unsigned int cores);
+
     /*
      * Perform an in-place Most Significant Digit Radix Sort on each list of
      * unsigned integers in LISTS using no more that CORES cpu cores.
