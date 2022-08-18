@@ -18,7 +18,7 @@ Rest of our assignments websit were published at:
 │   └── test/       
 ├── asgn3/              # bounds checker. 
 ├── asgn4/              # parallel MSD radix sorter. 
-├── bin/                
+├── bin/                # proviede
 ├── README.md           # provided at: https://www2.ucsc.edu/courses/cse111-wm/:/bin/
 └── resource/           # .pdf files: assignment description
 ```
