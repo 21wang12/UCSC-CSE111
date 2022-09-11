@@ -18,8 +18,8 @@ Rest of our assignments websit were published at:
 │   └── test/               # hold grading script file.
 ├── asgn3/              # bounds checker. 
 ├── asgn4/              # parallel MSD radix sorter. 
-├── bin/                # proviede
-├── README.md           # provided at: https://www2.ucsc.edu/courses/cse111-wm/:/bin/
+├── bin/                # proviede at: https://www2.ucsc.edu/courses/cse111-wm/:/bin/
+├── README.md           # description
 └── resource/           # .pdf files: assignment description
 ```
 
