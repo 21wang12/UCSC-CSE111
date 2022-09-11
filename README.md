@@ -11,11 +11,11 @@ Rest of our assignments websit were published at:
 ```
 .
 ├── asgn1/              # ydc.
-│   ├── code/           # hold source code file.
-│   └── test/           # hold grading script file.
+│   ├── code/               # hold source code file.
+│   └── test/               # hold grading script file.
 ├── asgn2/              # yshell.
-│   ├── code/               
-│   └── test/       
+│   ├── code/               # hold source code file.  
+│   └── test/               # hold grading script file.
 ├── asgn3/              # bounds checker. 
 ├── asgn4/              # parallel MSD radix sorter. 
 ├── bin/                # proviede
