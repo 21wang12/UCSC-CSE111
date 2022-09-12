@@ -4,7 +4,7 @@ The first 2 assignments were published at: https://www2.ucsc.edu/courses/cse111-
 
 We change professor because the previous professor got ill.
 
-Rest of our assignments websit were published at: 
+Rest of our assignments websit were published at slack channel.
 
 # File structure
 
