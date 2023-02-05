@@ -6,7 +6,7 @@ We change professor because the previous professor got ill.
 
 Rest of our assignments websit were published at slack channel.
 
-Contact me for help： sw3310@columbia.edu
+⚠️Please contact me when use this code: sw3310@columbia.edu
 
 # File structure
 
